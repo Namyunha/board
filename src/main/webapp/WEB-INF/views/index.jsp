@@ -27,18 +27,18 @@
     </ul>
 </header>
 <main>
-    <div>
-        <div>logo</div>
-        <div>
-            <form action="">
+    <div id="main_wrapper">
+        <div id="main_logo" class="main_content">logo</div>
+        <div id="main_form_wrapper" class="main_content">
+            <form action="" id="main_form" class="main_content">
                 <input type="text" value="아이디">
                 <input type="text" value="비밀번호">
                 <button>로그인</button>
             </form>
         </div>
-        <div>
-            <span><a href="#">비밀번호 찾기</a></span>
+        <div id="main_search" class="main_content">
             <span><a href="#">아이디 찾기</a></span>
+            <span><a href="#">비밀번호 찾기</a></span>
             <span><a href="#">회원가입</a></span>
         </div>
     </div>
