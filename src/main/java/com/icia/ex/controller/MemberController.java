@@ -3,11 +3,14 @@ package com.icia.ex.controller;
 import com.icia.ex.dto.MemberDTO;
 import com.icia.ex.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class MemberController {
@@ -32,7 +35,32 @@ public class MemberController {
         }
     }
 
+    @PostMapping("/search")
+    public ResponseEntity searchId(@RequestParam("checkId") String checkId) {
+        System.out.println("memberId: " + checkId);
+        MemberDTO dto = memberService.findById(checkId);
+        if (dto == null) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+    }
 
+    @GetMapping("/list")
+    public String memberDTOList(Model model) {
+        List<MemberDTO> memberDTOList = memberService.findAll();
+        model.addAttribute("memberList", memberDTOList);
+        return "members";
+    }
+
+    @GetMapping("/memberDetail")
+    public String viewUser(@RequestParam("id") Long id, Model model) {
+        System.out.println("id: " + id);
+        MemberDTO memberDTO = memberService.findByUser(id);
+        model.addAttribute("memberDTO", memberDTO);
+        System.out.println("memberDTO" + memberDTO);
+        return "memberDetail";
+    }
 }
 
 // 수정요청은 memberMain.jsp에서 시작

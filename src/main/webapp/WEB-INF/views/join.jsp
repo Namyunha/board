@@ -10,6 +10,8 @@
 <head>
     <link rel="stylesheet" href="/resources/css/style.css">
     <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="/resources/js/join.js"></script>
 </head>
 <body>
 <header id="main_header">
@@ -27,16 +29,16 @@
     </ul>
 </header>
 <script>
-    const join = () => {
-        main_form.submit();
-    }
+
+
 </script>
 <main>
     <div id="main_wrapper">
         <div id="main_form_wrapper"  class="main_content">
             <form action="/join" method="post" name="main_form" id="main_form" class="main_content">
-                <label for="memberId" onblur="checkId()">아이디</label>
-                    <input type="text" id="memberId" name="memberId">
+                <label for="memberId" >아이디</label>
+                    <input type="text" onblur="checkId()" id="memberId" name="memberId">
+                <p id="checkIdResult"></p>
                 <label for="memberPassword">비밀번호</label>
                     <input type="text" id="memberPassword" name="memberPassword">
                 <label for="checkPassword">비밀번호 재확인</label>
@@ -63,7 +65,5 @@
 <footer>
     footer
 </footer>
-<script src="/resources/js/join.js">
-</script>
 </body>
 </html>

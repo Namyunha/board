@@ -88,7 +88,7 @@ footer {
 
 #main_wrapper {
     width: 30%;
-    height: 100%;
+    height: 90%;
     padding: 3% 5%;
     background-color: white;
     display: flex;
@@ -111,7 +111,7 @@ footer {
 }
 
 #main_form {
-    height: 85%;
+    height: 80%;
     display: flex;
     flex-direction: column;
     padding: 3%;
@@ -121,7 +121,7 @@ footer {
 }
 
 #main_form_wrapper{
-    height: 100%;
+    height: 90%;
     display: flex;
     align-items: center;
 }

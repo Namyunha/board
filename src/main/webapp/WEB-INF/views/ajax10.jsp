@@ -27,6 +27,7 @@
             url: "/ajax10",
             data: JSON.stringify(member),
             contentType: "application/json",
+
             success: function (res) {
                 console.log("요청성공", res);
                 console.log("name", res.member.memberName);

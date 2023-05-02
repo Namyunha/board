@@ -30,6 +30,7 @@
       data:JSON.stringify(member),
       // 서버에게 보내는 데이터의 타입을 지정
       contentType: "application/json",
+
       success: function (res) {
         console.log("요청성공", res);
         const resultArea = document.getElementById("result-area");
