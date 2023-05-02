@@ -61,20 +61,17 @@ public class AjaxController {
         System.out.println("memberDTO" + memberDTO);
         return memberDTO;
     }
-
     @PostMapping("/ajax08")
     public @ResponseBody List<MemberDTO> ajax08(@RequestBody MemberDTO memberDTO) {
         List<MemberDTO> memberDTOList = memberService.findAll();
         memberDTOList.add(memberDTO);
         return memberDTOList;
     }
-
     @PostMapping("/ajax09")
     public ResponseEntity ajax09(@ModelAttribute MemberDTO memberDTO) {
         System.out.println("memberDTO = " + memberDTO);
         return new ResponseEntity<>(memberDTO, HttpStatus.NOT_FOUND);
     }
-
     @PostMapping("/ajax10")
     public ResponseEntity ajax10(@RequestBody MemberDTO memberDTO) {
         System.out.println("memberDTO = " + memberDTO);

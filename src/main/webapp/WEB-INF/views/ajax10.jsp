@@ -33,7 +33,6 @@
                 for(let i in res.memberList){
                     console.log(res.memberList[i]);
                 }
-
             },
             error: function () {
                 console.log("요청실패");
