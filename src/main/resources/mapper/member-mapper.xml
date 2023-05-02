@@ -20,6 +20,10 @@
     <select id="findById" resultType="member" parameterType="String">
         select * from member_table2 where memberId=#{memberId}
     </select>
+
+    <select id="findByUser" resultType="member" parameterType="Long">
+        select * from member_table2 where id=#{id}
+    </select>
 </mapper>
 
 

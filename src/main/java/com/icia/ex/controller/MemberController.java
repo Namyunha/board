@@ -9,6 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class MemberController {
     @Autowired
@@ -43,6 +46,21 @@ public class MemberController {
         }
     }
 
+    @GetMapping("/list")
+    public String memberDTOList(Model model) {
+        List<MemberDTO> memberDTOList = memberService.findAll();
+        model.addAttribute("memberList", memberDTOList);
+        return "members";
+    }
+
+    @GetMapping("/memberDetail")
+    public String viewUser(@RequestParam("id") Long id, Model model) {
+        System.out.println("id: " + id);
+        MemberDTO memberDTO = memberService.findByUser(id);
+        model.addAttribute("memberDTO", memberDTO);
+        System.out.println("memberDTO" + memberDTO);
+        return "memberDetail";
+    }
 }
 
 // 수정요청은 memberMain.jsp에서 시작

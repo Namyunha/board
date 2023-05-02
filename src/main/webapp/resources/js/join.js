@@ -1,6 +1,7 @@
 const join = () => {
     main_form.submit();
 }
+
 const checkId = () => {
     const checkId = document.querySelector("#memberId").value;
     const checkIdResult = document.querySelector("#checkIdResult");
@@ -20,3 +21,7 @@ const checkId = () => {
         }
     })
 }
+const viewUser = (id) => {
+    location.href = "memberDetail?id=" + id;
+}
+
