@@ -28,6 +28,7 @@
         <li><a href="#">mypage</a></li>
         <li><a href="#">profile</a></li>
     </ul>
+    <div id="ajax-result"></div>
 </header>
 <div id="main">
     <table>
@@ -41,7 +42,7 @@
         </tr>
         <c:forEach items="${memberList}" var="member">
             <tr>
-                <td>${member.id}</td>
+                <td><a onclick="ajaxDetail(`${member.id}`)">${member.id}</a></td>
                 <td>${member.memberId}</td>
                 <td>${member.memberPassword}</td>
                 <td>${member.memberName}</td>

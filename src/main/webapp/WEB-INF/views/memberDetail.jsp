@@ -10,7 +10,6 @@
 <head>
     <link rel="stylesheet" href="/resources/css/list.css">
     <title>Title</title>
-
 </head>
 <body>
 <header id="main_header">

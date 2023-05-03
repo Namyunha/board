@@ -15,14 +15,17 @@ import javax.servlet.http.HttpSession;
 public class HomeController {
     @Autowired
     MemberService memberService;
+
     @GetMapping("/")
     public String index() {
         return "index";
     }
+
     @GetMapping("index2")
     public String index2() {
         return "index2";
     }
+
     @PostMapping("/")
     public String indexParam(@ModelAttribute MemberDTO memberDTO, HttpSession session) {
         boolean loginResult = memberService.login(memberDTO);
@@ -33,4 +36,5 @@ public class HomeController {
             return "index";
         }
     }
+
 }

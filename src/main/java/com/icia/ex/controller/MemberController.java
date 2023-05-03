@@ -45,14 +45,12 @@ public class MemberController {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
     }
-
     @GetMapping("/list")
     public String memberDTOList(Model model) {
         List<MemberDTO> memberDTOList = memberService.findAll();
         model.addAttribute("memberList", memberDTOList);
         return "members";
     }
-
     @GetMapping("/memberDetail")
     public String viewUser(@RequestParam("id") Long id, Model model) {
         System.out.println("id: " + id);
@@ -60,6 +58,15 @@ public class MemberController {
         model.addAttribute("memberDTO", memberDTO);
         System.out.println("memberDTO" + memberDTO);
         return "memberDetail";
+    }
+    @PostMapping("/detail-ajax")
+    public ResponseEntity detailUser(@RequestParam("id") Long id) {
+        MemberDTO memberDTO = memberService.findByUser(id);
+        if (memberDTO == null) {
+            return new ResponseEntity<>(memberDTO, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
     }
 }
 

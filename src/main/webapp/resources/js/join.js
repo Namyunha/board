@@ -25,3 +25,19 @@ const viewUser = (id) => {
     location.href = "memberDetail?id=" + id;
 }
 
+// const ajaxDetail = (id) => {
+//     const detailArea = document.querySelector("#ajax-result");
+//     $.ajax({
+//         type: "post",
+//         url: "/detail-ajax",
+//         data: {
+//             "id" : id
+//         },
+//         success: function (res) {
+//            let result = <table>;
+//            result += <tr>;
+//            result += <td>memberDTO.memberId</td>;
+//            result += <td>memberDTO.memberPassword</td>;
+//         }
+//     })
+// }

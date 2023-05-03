@@ -25,7 +25,7 @@
         <li class="main_header_li"><a href="/">icon</a></li>
         <li class="main_header_li"><a href="#">shop</a></li>
         <li class="main_header_li"><a href="#">review</a></li>
-        <li class="main_header_li"><a href="#">community</a></li>
+        <li class="main_header_li"><a href="/board">community</a></li>
         <li class="main_header_li"><a href="#">about</a></li>
     </ul>
     <ul id="main_header_right" class="main_header_ul">
