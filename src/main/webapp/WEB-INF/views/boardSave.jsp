@@ -20,6 +20,7 @@
     <input type="text" id="boardTitle" name="boardTitle"><br>
     <label for="boardContents">내용</label>
     <input type="text" id="boardContents" name="boardContents"><br>
+    <input type="file" name="boardFile"> <br>
     <input onclick="boardSubmit()" type="button" value="작성하기">
 </form>
 </body>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -31,13 +32,18 @@ public class BoardController {
         return "boardSave";
     }
 
+//    @PostMapping("boardSave")
+//    public String saveParam(BoardDTO boardDTO, Model model) {
+//        int board = boardService.save(boardDTO);
+//        model.addAttribute("result", board);
+//        return "board";
+//    }
+
     @PostMapping("boardSave")
-    public String saveParam(BoardDTO boardDTO, Model model) {
-        int board = boardService.save(boardDTO);
-        model.addAttribute("result", board);
+    public String saveParam(BoardDTO boardDTO) throws IOException {
+        boardService.save(boardDTO);
         return "board";
     }
-
     @GetMapping("boardList")
     public String boardList(Model model) {
         List<BoardDTO> boardDTOList = boardService.findAll();
