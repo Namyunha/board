@@ -16,6 +16,7 @@
         <label for="boardTitle">제목</label>
         <input type="text" id="boardTitle" name="boardTitle" value="${boardDTO.boardTitle}">
         <label for="boardContents">내용</label>
+        <input type="text" id="boardPass" name="boardPass">
         <input type="text" id="boardContents" name="boardContents" value="${boardDTO.boardContents}">
         <input type="submit" value="수정하기">
     </form>
