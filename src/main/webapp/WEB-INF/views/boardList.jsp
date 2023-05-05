@@ -46,10 +46,10 @@
         </tr>
     </c:forEach>
 </table>
-<div>
-    <button onclick="page1()">1</button>
-    <button onclick="page2()">2</button>
-</div>
+<%--<div>--%>
+<%--    <button onclick="page1()">1</button>--%>
+<%--    <button onclick="page2()">2</button>--%>
+<%--</div>--%>
 <div id="ajax-area"></div>
 <script>
     const board_detail_ajax = (id) => {

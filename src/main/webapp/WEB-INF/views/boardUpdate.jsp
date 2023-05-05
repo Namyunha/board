@@ -12,14 +12,25 @@
 </head>
 <body>
     <form action="/boardUpdate" name="boardForm" method="post">
-        <input type="text" name="id" value="${boardDTO.id}">
+        <input type="text" name="id" value="${boardDTO.id}"><br>
         <label for="boardTitle">제목</label>
-        <input type="text" id="boardTitle" name="boardTitle" value="${boardDTO.boardTitle}">
+        <input type="text" id="boardTitle" name="boardTitle" value="${boardDTO.boardTitle}"><br>
         <label for="boardContents">내용</label>
-        <input type="text" id="boardPass" name="boardPass">
-        <input type="text" id="boardContents" name="boardContents" value="${boardDTO.boardContents}">
-        <input type="submit" value="수정하기">
+        <input type="text" id="boardContents" name="boardContents" value="${boardDTO.boardContents}"><br>
+        <label for="boardPass">비밀번호입력</label>
+        <input type="text" id="boardPass" name="boardPass" placeholder="비밀번호를입력해주세요"><br>
+        <button onclick="boardUpdate(`${boardDTO.boardPass}`)">수정하기</button>
     </form>
 </body>
-<script></script>
+<script>
+    const boardUpdate = (dbPass) => {
+        const boardPass = document.querySelector("#boardPass").value;
+        if(boardPass == dbPass){
+            boardForm.submit();
+            alert("수정이 완료됐습니다.")
+        } else {
+            alert("비밀번호를 확인해주세요")
+        }
+    }
+</script>
 </html>
