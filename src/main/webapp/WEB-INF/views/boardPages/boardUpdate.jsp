@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-    <form action="/boardUpdate" name="boardForm" method="post">
+    <form action="/board/update" name="boardForm" method="post">
         <input type="text" name="id" value="${boardDTO.id}"><br>
         <label for="boardTitle">제목</label>
         <input type="text" id="boardTitle" name="boardTitle" value="${boardDTO.boardTitle}"><br>
@@ -29,6 +29,7 @@
             boardForm.submit();
             alert("수정이 완료됐습니다.")
         } else {
+            location.href ="/board/";
             alert("비밀번호를 확인해주세요")
         }
     }

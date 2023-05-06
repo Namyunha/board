@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<form name="deleteForm" action="/deleteCheck?id=${deleteBoard.id}" method="post">
+<form name="deleteForm" action="/board/delete-check?id=${deleteBoard.id}" method="get">
     <input type="text" id="boardPass" name="boardPass" value="글작성비밀번호">
     <button onclick="deleteCheck(`${deleteBoard.boardPass}`)">확인</button>
 </form>

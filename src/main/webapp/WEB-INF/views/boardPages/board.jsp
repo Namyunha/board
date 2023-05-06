@@ -12,8 +12,8 @@
 </head>
 <body>
 <h2>i'm board</h2>
-<a href="/boardSave">글작성</a>
-<a href="/boardList">글목록조회</a>
-<a href="/searchBoard">게시글검색</a>
+<a href="/board/save">글작성</a>
+<a href="/board/">글목록조회</a>
+<a href="/board/search">게시글검색</a>
 </body>
 </html>

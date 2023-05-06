@@ -4,14 +4,15 @@
 
 
 <mapper namespace="Board">
-    <insert id="save" parameterType="board">
-        insert into board_table(boardWriter, boardPass, boardTitle, boardContents)
-        values (#{boardWriter}, #{boardPass}, #{boardTitle}, #{boardContents})
+    <insert id="save" parameterType="board" useGeneratedKeys="true" keyProperty="id">
+        insert into board_table(boardWriter, boardPass, boardTitle, boardContents, fileAttached)
+        values (#{boardWriter}, #{boardPass}, #{boardTitle}, #{boardContents}, #{fileAttached})
     </insert>
 
-    <select id="findFile" parameterType="Long" resultType="boardFile">
-        select * from board_file_table where boardId=#{boardId}
-    </select>
+    <insert id="saveFile" parameterType="boardFile">
+        insert into board_file_table(originalFileName, storedFileName, boardId)
+        values (#{originalFileName}, #{storedFileName}, #{boardId})
+    </insert>
 
     <select id="findAll" resultType="board">
         select * from board_table ;
@@ -28,7 +29,7 @@
     </select>
 
     <update id="upHits" parameterType="Long" >
-        update board_table set board_hits=board_hits+1 where id=#{id};
+        update board_table set boardHits=boardHits+1 where id=#{id};
     </update>
 
     <update id="update" parameterType="board">
@@ -38,14 +39,18 @@
         where id = #{id};
     </update>
 
-    <delete id="delete" parameterType="Long">
-        delete from board_table where id=#{id}
+    <delete id="delete" parameterType="String">
+        delete from board_table where boardPass=#{boardPass}
     </delete>
 
     <select id="findOne" parameterType="board" resultType="board">
         select *
         from board_table
         where boardTitle = #{boardTitle}
+    </select>
+
+    <select id="findFile" parameterType="Long" resultType="boardFile">
+        select * from board_file_table where boardId=#{boardId}
     </select>
 </mapper>
 

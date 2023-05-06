@@ -1,55 +1,61 @@
 package com.icia.ex.controller;
 
 import com.icia.ex.dto.BoardDTO;
-import com.icia.ex.dto.MemberDTO;
+import com.icia.ex.dto.BoardFileDTO;
 import com.icia.ex.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
 
 @Controller
+@RequestMapping("/board")
 public class BoardController {
 
     @Autowired
-    BoardService boardService;
+    private BoardService boardService;
 
-    @GetMapping("board")
+    @GetMapping("/index")
     public String board() {
-        return "board";
+        return "boardPages/board";
     }
 
-    @GetMapping("boardSave")
+    @GetMapping("/save")
     public String boardSave() {
-        return "boardSave";
+        return "boardPages/boardSave";
     }
 
-//    @PostMapping("boardSave")
-//    public String saveParam(BoardDTO boardDTO, Model model) {
-//        int board = boardService.save(boardDTO);
-//        model.addAttribute("result", board);
-//        return "board";
-//    }
-
-    @PostMapping("boardSave")
-    public String saveParam(BoardDTO boardDTO) throws IOException {
+    @PostMapping("/save")
+    public String saveParam (@ModelAttribute BoardDTO boardDTO) throws IOException {
+        System.out.println(boardDTO);
         boardService.save(boardDTO);
-        return "board";
+        return "redirect:/board/";
     }
-    @GetMapping("boardList")
+
+    @GetMapping
+    public String boardDetail(@RequestParam("id") Long id, Model model){
+        BoardDTO boardDTO = boardService.findById(id);
+        boardService.upHits(id);
+        model.addAttribute("board", boardDTO);
+        if (boardDTO.getFileAttached() == 1) {
+            List<BoardFileDTO> boardFileDTO = boardService.findFile(id);
+            model.addAttribute("boardFileList", boardFileDTO);
+            System.out.println("boardFileDTO = " + boardFileDTO);
+        }
+        return "boardPages/boardDetail";
+    }
+
+    @GetMapping("/")
     public String boardList(Model model) {
         List<BoardDTO> boardDTOList = boardService.findAll();
         model.addAttribute("boardList", boardDTOList);
         System.out.println(boardDTOList);
-        return "boardList";
+        return "boardPages/boardList";
     }
 
     @GetMapping("boardList2")
@@ -57,10 +63,10 @@ public class BoardController {
         List<BoardDTO> boardDTOList = boardService.findAll2();
         model.addAttribute("boardList", boardDTOList);
         System.out.println(boardDTOList);
-        return "boardList";
+        return "boardPages/boardList";
     }
 
-    @GetMapping("ajax-detail")
+    @GetMapping("/ajax-detail")
     public ResponseEntity detailAjax(@RequestParam("id") Long id) {
         System.out.println("id = " + id);
         BoardDTO dto = boardService.findById(id);
@@ -73,53 +79,43 @@ public class BoardController {
         }
     }
 
-    @GetMapping("ajax-delete")
-    public String deleteAjax(@RequestParam("id") Long id) {
-        System.out.println("id = " + id);
-        boardService.delete(id);
-        return "board";
-    }
-
-    @GetMapping("boardUpdate")
+    @GetMapping("/update")
     public String boardUpdate(@RequestParam("id") Long id, Model model) {
         System.out.println("id = " + id);
         BoardDTO boardDTO = boardService.findById(id);
         model.addAttribute("boardDTO", boardDTO);
-        return "boardUpdate";
+        return "boardPages/boardUpdate";
     }
 
-    @PostMapping("boardUpdate")
+    @PostMapping("/update")
     public String boardUpdate(@ModelAttribute BoardDTO boardDTO) {
         System.out.println(boardDTO);
         boardService.update(boardDTO);
-        return "board";
+        return "redirect:/board?id="+boardDTO.getId();
     }
 
-    @GetMapping("deleteCheck")
+    @GetMapping("/delete")
     public String deleteCheck(@RequestParam("id") Long id, Model model) {
         BoardDTO deleteBoard = boardService.findById(id);
         model.addAttribute("deleteBoard", deleteBoard);
-        return "deleteCheck";
+        return "boardPages/deleteCheck";
+    }
+    @GetMapping("/delete-check")
+    public String delete(@RequestParam("boardPass") String password){
+        boardService.delete(password);
+        return "redirect:/board/";
     }
 
-    @PostMapping("deleteCheck")
-    public String delete(@RequestParam("id") Long id){
-        boardService.delete(id);
-        return "board";
-    }
-
-    @GetMapping("searchBoard")
+    @GetMapping("/search")
     public String search() {
-        return "boardSearch";
+        return "boardPages/boardSearch";
     }
 
-    @PostMapping("searchBoard")
+    @PostMapping("/search")
     public String searchParam(@ModelAttribute BoardDTO boardDTO, Model model) {
         BoardDTO searchDTO = boardService.findOne(boardDTO);
         System.out.println(searchDTO);
         model.addAttribute("searchDTO", searchDTO);
         return "searchResult";
     }
-
-
 }
