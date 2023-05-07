@@ -2,6 +2,7 @@ package com.icia.ex.controller;
 
 import com.icia.ex.dto.BoardDTO;
 import com.icia.ex.dto.BoardFileDTO;
+import com.icia.ex.dto.PageDTO;
 import com.icia.ex.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,17 +32,18 @@ public class BoardController {
     }
 
     @PostMapping("/save")
-    public String saveParam (@ModelAttribute BoardDTO boardDTO) throws IOException {
+    public String saveParam(@ModelAttribute BoardDTO boardDTO) throws IOException {
         System.out.println(boardDTO);
         boardService.save(boardDTO);
-        return "redirect:/board/";
+        return "redirect:/board/paging";
     }
 
     @GetMapping
-    public String boardDetail(@RequestParam("id") Long id, Model model){
+    public String boardDetail(@RequestParam("id") Long id, @RequestParam(value = "page", required = false, defaultValue = "1") int page, Model model) {
         BoardDTO boardDTO = boardService.findById(id);
         boardService.upHits(id);
         model.addAttribute("board", boardDTO);
+        model.addAttribute("page", page);
         if (boardDTO.getFileAttached() == 1) {
             List<BoardFileDTO> boardFileDTO = boardService.findFile(id);
             model.addAttribute("boardFileList", boardFileDTO);
@@ -91,7 +93,7 @@ public class BoardController {
     public String boardUpdate(@ModelAttribute BoardDTO boardDTO) {
         System.out.println(boardDTO);
         boardService.update(boardDTO);
-        return "redirect:/board?id="+boardDTO.getId();
+        return "redirect:/board?id=" + boardDTO.getId();
     }
 
     @GetMapping("/delete")
@@ -100,8 +102,9 @@ public class BoardController {
         model.addAttribute("deleteBoard", deleteBoard);
         return "boardPages/deleteCheck";
     }
+
     @GetMapping("/delete-check")
-    public String delete(@RequestParam("boardPass") String password){
+    public String delete(@RequestParam("boardPass") String password) {
         boardService.delete(password);
         return "redirect:/board/";
     }
@@ -113,9 +116,21 @@ public class BoardController {
 
     @PostMapping("/search")
     public String searchParam(@ModelAttribute BoardDTO boardDTO, Model model) {
+        System.out.println(boardDTO);
         BoardDTO searchDTO = boardService.findOne(boardDTO);
         System.out.println(searchDTO);
         model.addAttribute("searchDTO", searchDTO);
         return "searchResult";
+    }
+
+    @GetMapping("paging")
+    public String paging(Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+        System.out.println("page = " + page);
+        List<BoardDTO> pagingList = boardService.pagingList(page);
+        System.out.println("pagingList: " + pagingList);
+        PageDTO pageDTO = boardService.pagingParam(page);
+        model.addAttribute("boardList", pagingList);
+        model.addAttribute("paging", pageDTO);
+        return "/boardPages/paging";
     }
 }

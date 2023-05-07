@@ -67,7 +67,8 @@
 </body>
 <script>
     const board_list = () => {
-        location.href = "../../..";
+        const page = ${page};
+        location.href = "/board/paging?page=" + page;
     }
     const board_update = () => {
         const id = '${board.id}';
