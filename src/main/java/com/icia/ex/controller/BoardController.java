@@ -55,7 +55,7 @@ public class BoardController {
             System.out.println("boardFileDTO = " + boardFileDTO);
         }
         List<CommentDTO> commentDTOList = commentService.findAll(id);
-        if(commentDTOList.size() == 0) {
+        if (commentDTOList.size() == 0) {
             model.addAttribute("commentList", null);
         } else {
             model.addAttribute("commentList", commentDTOList);
@@ -119,21 +119,21 @@ public class BoardController {
         boardService.delete(password);
         return "redirect:/board/";
     }
-
-    @GetMapping("/search")
-    public String search() {
-        return "boardPages/boardSearch";
+    @PostMapping("/paging")
+    public String search(@RequestParam("keyword") String keyword, @RequestParam("searchKeyword") String searchKeyword) {
+        System.out.println(keyword);
+        System.out.println(searchKeyword);
+        List<BoardDTO>boardDTOList = boardService.search(keyword, searchKeyword);
+        return "boardPages/searchResult";
     }
-
-    @PostMapping("/search")
-    public String searchParam(@ModelAttribute BoardDTO boardDTO, Model model) {
-        System.out.println(boardDTO);
-        BoardDTO searchDTO = boardService.findOne(boardDTO);
-        System.out.println(searchDTO);
-        model.addAttribute("searchDTO", searchDTO);
-        return "searchResult";
-    }
-
+//    @PostMapping("/search")
+//    public String searchParam(@ModelAttribute BoardDTO boardDTO, Model model) {
+//        System.out.println(boardDTO);
+//        BoardDTO searchDTO = boardService.findOne(boardDTO);
+//        System.out.println(searchDTO);
+//        model.addAttribute("searchDTO", searchDTO);
+//        return "searchResult";
+//    }
     @GetMapping("paging")
     public String paging(Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
         System.out.println("page = " + page);

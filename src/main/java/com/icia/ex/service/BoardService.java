@@ -126,4 +126,8 @@ public class BoardService {
         pageDTO.setEndPage(endPage);
         return pageDTO;
     }
+
+    public List<BoardDTO> search(String keyword, String searchKeyword) {
+        return boardRepository.search(keyword, searchKeyword);
+    }
 }

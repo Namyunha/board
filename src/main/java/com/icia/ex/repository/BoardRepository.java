@@ -69,4 +69,8 @@ public class BoardRepository {
     public int boardCount() {
         return  sql.selectOne("Board.boardCount");
     }
+
+    public List<BoardDTO> search(String keyword, String searchKeyword) {
+        return sql.selectList("Board.search", keyword, searchKeyword);
+    }
 }

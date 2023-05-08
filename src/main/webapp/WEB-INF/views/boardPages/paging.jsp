@@ -62,6 +62,17 @@
             <a href="/board/paging?page=${paging.page+1}">[다음]</a>
         </c:otherwise>
     </c:choose>
+    <form action="/board/paging" method="post" name="searchForm">
+        <select name="keyword" id="keyword">
+            <option value="boardTitle">제목</option>
+            <option value="boardContents">내용</option>
+            <option value="boardWriter">작성자</option>
+        </select>
+        <input type="text" name="searchKeyword" id="searchKeyword">
+        <button>검색하기</button>
+    </form>
 </div>
+<script>
+</script>
 </body>
 </html>
