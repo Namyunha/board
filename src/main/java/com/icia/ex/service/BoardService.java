@@ -110,7 +110,7 @@ public class BoardService {
     public PageDTO pagingParam(int page) {
         // 전체 글 갯수 조회
         int boardCount = boardRepository.boardCount();
-        // 전체 페이지 갯수 계산(10/3=3.33333 => 4)
+        // 전체 페이지 갯수 계산(10/3=3.33333 => 4)   , double가 실수처리부터함
         int maxPage = (int) (Math.ceil((double) boardCount / pageLimit));
         // 시작 페이지 값 계산(1, 4, 7, 10, ~~~~)
         int startPage = (((int)(Math.ceil((double) page / blockLimit))) - 1) * blockLimit + 1;

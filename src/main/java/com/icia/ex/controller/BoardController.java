@@ -2,8 +2,10 @@ package com.icia.ex.controller;
 
 import com.icia.ex.dto.BoardDTO;
 import com.icia.ex.dto.BoardFileDTO;
+import com.icia.ex.dto.CommentDTO;
 import com.icia.ex.dto.PageDTO;
 import com.icia.ex.service.BoardService;
+import com.icia.ex.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,9 @@ public class BoardController {
 
     @Autowired
     private BoardService boardService;
+
+    @Autowired
+    private CommentService commentService;
 
     @GetMapping("/index")
     public String board() {
@@ -49,6 +54,12 @@ public class BoardController {
             model.addAttribute("boardFileList", boardFileDTO);
             System.out.println("boardFileDTO = " + boardFileDTO);
         }
+//        List<CommentDTO> commentDTOList = commentService.findAll(id);
+//        if(commentDTOList.size() == 0) {
+//            model.addAttribute("commentList", null);
+//        } else {
+//            model.addAttribute("commentList", commentDTOList);
+//        }
         return "boardPages/boardDetail";
     }
 
@@ -133,4 +144,5 @@ public class BoardController {
         model.addAttribute("paging", pageDTO);
         return "/boardPages/paging";
     }
+
 }
