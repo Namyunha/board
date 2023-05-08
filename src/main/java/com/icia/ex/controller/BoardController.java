@@ -54,12 +54,12 @@ public class BoardController {
             model.addAttribute("boardFileList", boardFileDTO);
             System.out.println("boardFileDTO = " + boardFileDTO);
         }
-//        List<CommentDTO> commentDTOList = commentService.findAll(id);
-//        if(commentDTOList.size() == 0) {
-//            model.addAttribute("commentList", null);
-//        } else {
-//            model.addAttribute("commentList", commentDTOList);
-//        }
+        List<CommentDTO> commentDTOList = commentService.findAll(id);
+        if(commentDTOList.size() == 0) {
+            model.addAttribute("commentList", null);
+        } else {
+            model.addAttribute("commentList", commentDTOList);
+        }
         return "boardPages/boardDetail";
     }
 

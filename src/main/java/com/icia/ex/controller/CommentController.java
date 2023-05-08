@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @Controller
@@ -24,7 +23,7 @@ public class CommentController {
         System.out.println(commentDTO);
         commentService.save(commentDTO);
         List<CommentDTO> commentDTOList = commentService.findAll(commentDTO.getBoardId());
-        model.addAttribute("commentList", commentDTOList);
-        return new ResponseEntity<>(HttpStatus.OK);
+//        model.addAttribute("commentList", commentDTOList);
+        return new ResponseEntity<>(commentDTOList,HttpStatus.OK);
     }
 }

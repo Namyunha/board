@@ -141,8 +141,8 @@
                 }
                 output += "</table>"
                 result.innerHTML = output;
-                document.getElementById("comment-writer").value = "";
-                document.getElementById("comment-contents").value = "";
+                document.getElementById("writer").value = "";
+                document.getElementById("commentContents").value = "";
             },
             error: function () {
                 console.log("등록실패!")
