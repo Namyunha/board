@@ -62,15 +62,23 @@ public class BoardRepository {
         return sql.selectList("Board.findFile", boardId);
     }
 
+
     public List<BoardDTO> pagingList(Map<String, Integer> pagingParams) {
-        return sql.selectList("Board.pagingList", pagingParams);
+        return sql.selectList("Board.paging", pagingParams);
     }
 
     public int boardCount() {
-        return  sql.selectOne("Board.boardCount");
+        return sql.selectOne("Board.count");
     }
 
-    public List<BoardDTO> search(String keyword, String searchKeyword) {
-        return sql.selectList("Board.search", keyword, searchKeyword);
+    public List<BoardDTO> searchList(Map<String, Object> pagingParams) {
+        return sql.selectList("Board.search", pagingParams);
     }
+
+    public int boardSearchCount(Map<String, Object> pagingParams) {
+        return sql.selectOne("Board.searchCount", pagingParams);
+    }
+
+//    public List<BoardDTO> search(String keyword, String searchKeyword) {
+//    }
 }

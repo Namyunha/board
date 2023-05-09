@@ -14,7 +14,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/board")
@@ -119,14 +121,8 @@ public class BoardController {
         boardService.delete(password);
         return "redirect:/board/";
     }
-    @PostMapping("/paging")
-    public String search(@RequestParam("keyword") String keyword, @RequestParam("searchKeyword") String searchKeyword) {
-        System.out.println(keyword);
-        System.out.println(searchKeyword);
-        List<BoardDTO>boardDTOList = boardService.search(keyword, searchKeyword);
-        return "boardPages/searchResult";
-    }
-//    @PostMapping("/search")
+
+    //    @PostMapping("/search")
 //    public String searchParam(@ModelAttribute BoardDTO boardDTO, Model model) {
 //        System.out.println(boardDTO);
 //        BoardDTO searchDTO = boardService.findOne(boardDTO);
@@ -135,14 +131,25 @@ public class BoardController {
 //        return "searchResult";
 //    }
     @GetMapping("paging")
-    public String paging(Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+    public String paging(@RequestParam(value = "page", required = false, defaultValue = "1") int page,
+                         @RequestParam(value = "q", required = false, defaultValue = "") String q,
+                         @RequestParam(value = "type", required = false, defaultValue = "boartTitle") String type,
+                         Model model) {
         System.out.println("page = " + page);
-        List<BoardDTO> pagingList = boardService.pagingList(page);
+        List<BoardDTO> pagingList = null;
+        PageDTO pageDTO = null;
+        if(q.equals("")){
+            pagingList = boardService.pagingList(page);
+            pageDTO = boardService.pagingParam(page);
+        }else{
+            pagingList = boardService.searchPagingList(page, type, q);
+            pageDTO = boardService.searchPagingParam(page, type, q);
+        }
         System.out.println("pagingList: " + pagingList);
-        PageDTO pageDTO = boardService.pagingParam(page);
+        System.out.println(pageDTO);
         model.addAttribute("boardList", pagingList);
         model.addAttribute("paging", pageDTO);
+
         return "/boardPages/paging";
     }
-
 }
