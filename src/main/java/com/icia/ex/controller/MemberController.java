@@ -36,7 +36,7 @@ public class MemberController {
     }
 
     @PostMapping("/search")
-    public ResponseEntity searchId(@RequestParam("checkId") String checkId) {
+    public ResponseEntity searchId(@ModelAttribute("checkId") String checkId) {
         System.out.println("memberId: " + checkId);
         MemberDTO dto = memberService.findById(checkId);
         if (dto == null) {
