@@ -42,7 +42,7 @@
         </tr>
         <c:forEach items="${memberList}" var="member">
             <tr>
-                <td><a onclick="ajaxDetail(`${member.id}`)">${member.id}</a></td>
+                <td>${member.id}</td>
                 <td>${member.memberId}</td>
                 <td>${member.memberPassword}</td>
                 <td>${member.memberName}</td>

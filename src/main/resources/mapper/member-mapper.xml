@@ -3,26 +3,43 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Member">
-    <insert id="save" parameterType="member">
-        insert into member_table2(memberId, memberPassword, memberName, memberBirth, gender, memberEmail, memberMobile)
+    <insert id="save" parameterType="member" useGeneratedKeys="true" keyProperty="id">
+        insert into member_table(memberId, memberPassword, memberName, memberBirth, gender, memberEmail, memberMobile, fileAttached)
         values (#{memberId}, #{memberPassword}, #{memberName}, #{memberBirth}, #{gender}, #{memberEmail},
-                #{memberMobile})
+                #{memberMobile}, #{fileAttached})
     </insert>
 
     <select id="login" resultType="member" parameterType="member">
-        select * from member_table2 where memberId=#{memberId} and memberPassword=#{memberPassword}
+        select * from member_table where memberId=#{memberId} and memberPassword=#{memberPassword}
     </select>
 
     <select id="findAll" resultType="member">
-        select * from member_table2
+        select * from member_table
     </select>
 
     <select id="findById" resultType="member" parameterType="String">
-        select * from member_table2 where memberId=#{memberId}
+        select * from member_table where memberId=#{memberId}
     </select>
 
     <select id="findByUser" resultType="member" parameterType="Long">
-        select * from member_table2 where id=#{id}
+        select * from member_table where id=#{id}
+    </select>
+
+    <insert id="saveFile" parameterType="memberFile">
+        insert into member_file_table(originalFileName, storedFileName, MemberId)
+        values (#{originalFileName}, #{storedFileName}, #{MemberId})
+    </insert>
+
+    <select id="findFile" parameterType="Long" resultType="memberFile">
+        select * from member_file_table where MemberId=#{MemberId}
+    </select>
+
+    <select id="findByEmail" parameterType="String" resultType="memberFile">
+        select * from member_table where memberEmail=#{memberEmail}
+    </select>
+
+    <select id="findDTO" parameterType="member" resultType="member">
+        select * from member_table where memberId=#{memberId} and memberPassword=#{memberPassword};
     </select>
 </mapper>
 

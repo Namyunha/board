@@ -14,7 +14,7 @@
 <h2>i'm board</h2>
 <a href="/board/save">글작성</a>
 <a href="/board/">글목록조회</a>
-<a href="/board/search">게시글검색</a>
 <a href="/board/paging">페이징목록</a>
+<a href="/">메인</a>
 </body>
 </html>

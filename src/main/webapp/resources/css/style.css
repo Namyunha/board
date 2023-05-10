@@ -80,16 +80,10 @@ main {
     display: flex;
 }
 
-footer {
-    width: 100%;
-    height: 10%;
-    background-color: white;
-}
 
 #main_wrapper {
     width: 30%;
-    height: 90%;
-    padding: 3% 5%;
+    height: auto;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -111,7 +105,8 @@ footer {
 }
 
 #main_form {
-    height: 80%;
+    margin-top: 30%;
+    height: auto;
     display: flex;
     flex-direction: column;
     padding: 3%;
@@ -121,7 +116,7 @@ footer {
 }
 
 #main_form_wrapper{
-    height: 90%;
+    height: auto;
     display: flex;
     align-items: center;
 }
@@ -129,9 +124,11 @@ footer {
 #main_form input {
     padding: 3%;
 }
+
 #gender{
     padding: 3%;
 }
+
 #main_form button {
     padding: 3%;
     background-color: black;
@@ -148,6 +145,7 @@ footer {
 }
 
 #main_search a {
+    margin-top: 3%;
     text-decoration: none;
     color: black;
 }
@@ -161,6 +159,7 @@ footer {
     text-decoration: none;
     text-transform: uppercase;
 }
+
 #main_header_right{
     display: flex;
     justify-content: flex-end;

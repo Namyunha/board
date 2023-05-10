@@ -3,6 +3,9 @@ package com.icia.ex.dto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,5 +20,6 @@ public class MemberDTO {
     private String gender;
     private String memberEmail;
     private String memberMobile;
-    private String memberProfile;
+    private int fileAttached;
+    private List<MultipartFile> memberProfile;
 }

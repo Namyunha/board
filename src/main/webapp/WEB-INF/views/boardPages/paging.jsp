@@ -89,7 +89,6 @@
             </c:choose>
         </ul>
     </div>
-
 </div>
 <script>
 </script>

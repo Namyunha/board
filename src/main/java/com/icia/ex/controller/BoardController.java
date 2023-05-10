@@ -73,14 +73,6 @@ public class BoardController {
         return "boardPages/boardList";
     }
 
-    @GetMapping("boardList2")
-    public String boardList2(Model model) {
-        List<BoardDTO> boardDTOList = boardService.findAll2();
-        model.addAttribute("boardList", boardDTOList);
-        System.out.println(boardDTOList);
-        return "boardPages/boardList";
-    }
-
     @GetMapping("/ajax-detail")
     public ResponseEntity detailAjax(@RequestParam("id") Long id) {
         System.out.println("id = " + id);
@@ -130,6 +122,7 @@ public class BoardController {
 //        model.addAttribute("searchDTO", searchDTO);
 //        return "searchResult";
 //    }
+
     @GetMapping("paging")
     public String paging(@RequestParam(value = "page", required = false, defaultValue = "1") int page,
                          @RequestParam(value = "q", required = false, defaultValue = "") String q,
@@ -149,7 +142,6 @@ public class BoardController {
         System.out.println(pageDTO);
         model.addAttribute("boardList", pagingList);
         model.addAttribute("paging", pageDTO);
-
         return "/boardPages/paging";
     }
 }
