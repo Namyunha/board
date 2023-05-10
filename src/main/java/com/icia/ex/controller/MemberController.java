@@ -36,7 +36,7 @@ public class MemberController {
         System.out.println(memberDTO);
         boolean dto = memberService.login(memberDTO);
         if (dto) {
-            session.setAttribute("loginDTO", memberDTO.getMemberEmail());
+            session.setAttribute("loginDTO", memberDTO.getMemberId());
             System.out.println(session.getAttribute("loginDTO"));
             return "index";
         } else {
@@ -84,6 +84,15 @@ public class MemberController {
             System.out.println("memberFileDTO = " + memberFileDTO);
         }
         System.out.println("memberDTO" + memberDTO);
+        return "memberDetail";
+    }
+
+    @GetMapping("/detail")
+    public String detail(@RequestParam("memberId") String memberId, Model model){
+        System.out.println(memberId);
+        MemberDTO dto = memberService.findById(memberId);
+        System.out.println("dto= "+dto);
+        model.addAttribute("memberDTO", dto);
         return "memberDetail";
     }
 

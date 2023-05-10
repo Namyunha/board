@@ -52,7 +52,7 @@
             </div>
         </c:when>
         <c:otherwise>
-            <h2>${loginDTO.memberName}님 환영합니다</h2>
+            <h2>${loginDTO}님 환영합니다</h2>
         </c:otherwise>
     </c:choose>
 </main>

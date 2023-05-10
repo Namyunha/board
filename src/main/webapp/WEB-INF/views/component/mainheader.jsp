@@ -33,7 +33,7 @@
       <ul id="main_header_right" class="main_header_ul">
         <li><a href="/logout">logout</a></li>
         <li><a href="#">cart</a></li>
-        <li><a href="/memberDetail?memberEmail=${loginDTO}">mypage</a></li>
+        <li><a href="/detail?memberId=${loginDTO}">mypage</a></li>
         <li><a href="#">profile</a></li>
       </ul>
     </c:otherwise>

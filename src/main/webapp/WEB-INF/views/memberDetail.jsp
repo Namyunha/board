@@ -50,7 +50,7 @@
             <td>${memberDTO.memberMobile}</td>
         </tr>
         <tr>
-            <th>삭제</th>
+            <th>수정</th>
             <td>삭제</td>
         </tr>
         <c:if test="${memberDTO.fileAttached == 1}">

@@ -33,8 +33,8 @@ public class MemberService {
        return memberRepository.findAll();
     }
 
-    public MemberDTO findById(String memberEmail) {
-        return memberRepository.findById(memberEmail);
+    public MemberDTO findById(String memberId) {
+        return memberRepository.findById(memberId);
     }
 
     public MemberDTO findByUser(Long id) {
@@ -96,4 +96,5 @@ public class MemberService {
     public MemberDTO login2(MemberDTO memberDTO) {
         return memberRepository.login2(memberDTO);
     }
+
 }
