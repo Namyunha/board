@@ -49,7 +49,7 @@ public class MemberRepository {
         return sql.selectOne("Member.findDTO",memberDTO);
     }
 
-    public MemberDTO findByEmail(String membermail) {
-        return sql.selectOne("Member.findByEmail", membermail);
+    public MemberDTO findByEmail(String memberEmail) {
+        return sql.selectOne("Member.findByEmail", memberEmail);
     }
 }

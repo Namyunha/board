@@ -21,9 +21,6 @@
         select * from member_table where memberId=#{memberId}
     </select>
 
-    <select id="findById2" resultType="member" parameterType="String">
-        select * from member_table where memberId=#{memberId}
-    </select>
     <select id="findByUser" resultType="member" parameterType="Long">
         select * from member_table where id=#{id}
     </select>

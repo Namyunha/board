@@ -14,7 +14,7 @@
     <title>Title</title>
 </head>
 <body>
-<%@include file="./component/mainheader.jsp" %>
+<%@include file="../component/mainheader.jsp" %>
 <div id="main">
     <table>
         <tr>
@@ -50,8 +50,8 @@
             <td>${memberDTO.memberMobile}</td>
         </tr>
         <tr>
-            <th>수정</th>
-            <td>삭제</td>
+            <th><a href="/member/update?id=${memberDTO.id}">수정</a></th>
+            <td><a href="">삭제</a></td>
         </tr>
         <c:if test="${memberDTO.fileAttached == 1}">
             <tr>

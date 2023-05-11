@@ -27,7 +27,6 @@
 <%--        alert("회원가입실패!")--%>
 <%--    }--%>
 <%--</script>--%>
-
 <body>
 <%@include file="./component/mainheader.jsp" %>
 <main>
@@ -42,12 +41,11 @@
                         <button onclick="login()">로그인</button>
                     </form>
                 </div>
-
                     <%--<a href="index2">index2</a>--%>
                 <div id="main_search" class="main_content">
                     <span><a href="#">아이디 찾기</a></span>
                     <span><a href="#">비밀번호 찾기</a></span>
-                    <span><a href="join">회원가입</a></span>
+                    <span><a href="/member/join">회원가입</a></span>
                 </div>
             </div>
         </c:when>

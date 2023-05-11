@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 </head>
 <body>
+<script src="/resources/js/paging.js"></script>
 <div id="section">
     <div class="container" id="search-area">
         <form action="/board/paging" method="get">
@@ -18,6 +19,7 @@
             <input type="text" name="q" placeholder="검색어를 입력하세요">
             <input type="submit" value="검색">
         </form>
+        <button onclick="writeBoard(`${memberId}`)">글작성하기</button>
     </div>
     <div class="container" id="list">
         <table class="table table-striped table-hover text-center">
@@ -43,6 +45,7 @@
             </c:forEach>
         </table>
     </div>
+
     <div class="container">
         <ul class="pagination justify-content-center">
             <c:choose>
@@ -75,6 +78,7 @@
                     </c:otherwise>
                 </c:choose>
             </c:forEach>
+
             <c:choose>
                 <c:when test="${paging.page>=paging.maxPage}">
                     <li class="page-item disabled">
@@ -89,6 +93,7 @@
             </c:choose>
         </ul>
     </div>
+
 </div>
 <script>
 </script>

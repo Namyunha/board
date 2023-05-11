@@ -1,0 +1,46 @@
+create table board_file_table(
+	id bigint auto_increment primary key,
+    originalFileName varchar(100),
+    storedFileName varchar(100),
+    boardId bigint,
+    constraint fk_board_file_table foreign key(boardId) references board_table(id) on delete cascade
+);
+
+create table comment_table(
+	id bigint auto_increment primary key,
+    commentWriter varchar(20),
+    commentContents varchar(200),
+    boardId bigint ,
+	commentCreateDate datetime default now(),
+	constraint fk_comment foreign key (boardId) references board_table (id) on delete cascade
+);
+create table member_table(
+	id bigint auto_increment primary key,
+    memberId varchar(20) not null unique,
+    memberPassword varchar(20) not null,
+    memberName varchar(20) not null,
+    memberBirth varchar(20) not null,
+    gender varchar(10) not null,
+    memberEmail varchar(20) not null unique,
+    memberMobile varchar(20) not null unique,
+    fileAttached int default 0
+);
+create table board_table (
+	id bigint auto_increment primary key,
+    boardWriter varchar(50) ,
+    boardPass varchar(20) not null,
+    boardTitle varchar(50) not null,
+    boardContents varchar(500) not null,
+    boardCreatedDate datetime default now(),
+    boardHits bigint default 0,
+    fileAttached int default 0,
+    memberId bigint,
+    constraint fk_board_table foreign key(memberId) references member_table(id) on delete cascade
+);
+create table member_file_table(
+	id bigint auto_increment primary key,
+    originalFileName varchar(100),
+    storedFileName varchar(100),
+    MemberId bigint,
+    constraint fk_board_file_table_board_table foreign key(MemberId) references member_table(id) on delete cascade
+);

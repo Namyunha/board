@@ -20,5 +20,6 @@ public class BoardDTO {
     private Timestamp boardCreatedDate;
     private int boardHits;
     private int fileAttached;
+    private Long memberId;
     private List<MultipartFile> boardFile;
 }

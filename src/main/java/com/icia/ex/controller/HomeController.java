@@ -14,23 +14,23 @@ import javax.servlet.http.HttpSession;
 public class HomeController {
     @Autowired
     MemberService memberService;
+
     @GetMapping("/")
     public String index() {
         return "index";
     }
-    @GetMapping("index2")
-    public String index2() {
-        return "index2";
+
+    @PostMapping("/")
+    public String login(@ModelAttribute MemberDTO memberDTO, HttpSession session) {
+        System.out.println(memberDTO);
+        boolean dto = memberService.login(memberDTO);
+        if (dto) {
+            session.setAttribute("loginDTO", memberDTO.getMemberId());
+            System.out.println(session.getAttribute("loginDTO"));
+            return "index";
+        } else {
+            return "index";
+        }
     }
-//    @PostMapping("/")
-//    public String indexParam(@ModelAttribute MemberDTO memberDTO, HttpSession session) {
-//        boolean loginResult = memberService.login(memberDTO);
-//        if (loginResult) {
-//            session.setAttribute("dto", memberDTO);
-//            return "memberPage";
-//        } else {
-//            return "index";
-//        }
-//    }
 
 }

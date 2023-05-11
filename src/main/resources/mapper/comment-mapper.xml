@@ -12,6 +12,9 @@
         select * from board_comment_table where boardId=#{boardId} order by id desc
     </select>
 
+    <select id="findComment" parameterType="Long" resultType="comment">
+        select * from board_comment_table where boardId=#{boardId};
+    </select>
 </mapper>
 
 

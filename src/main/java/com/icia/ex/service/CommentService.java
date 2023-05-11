@@ -15,9 +15,11 @@ public class CommentService {
     public void save(CommentDTO commentDTO) {
         commnetRepository.save(commentDTO);
     }
-
-
     public List<CommentDTO> findAll(Long boardId) {
         return commnetRepository.findAll(boardId);
+    }
+
+    public CommentDTO findComment(Long boardId) {
+        return commnetRepository.findComment(boardId);
     }
 }

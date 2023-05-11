@@ -15,27 +15,12 @@
 <%--    <script defer src="/resources/js/join.js"></script>--%>
 </head>
 <body>
-<%--<header id="main_header">--%>
-<%--    <ul id="main_header_left" class="main_header_ul">--%>
-<%--        <li class="main_header_li"><a href="/">icon</a></li>--%>
-<%--        <li class="main_header_li"><a href="#">shop</a></li>--%>
-<%--        <li class="main_header_li"><a href="#">review</a></li>--%>
-<%--        <li class="main_header_li"><a href="#">community</a></li>--%>
-<%--        <li class="main_header_li"><a href="#">about</a></li>--%>
-<%--    </ul>--%>
-<%--    <ul id="main_header_right" class="main_header_ul">--%>
-<%--        <li><a href="#">cart</a></li>--%>
-<%--        <li><a href="#">mypage</a></li>--%>
-<%--        <li><a href="#">profile</a></li>--%>
-<%--    </ul>--%>
-<%--</header>--%>
-
 <main>
     <div id="main_wrapper">
         <div id="main_form_wrapper"  class="main_content">
-            <form action="/join" method="post" name="main_form" id="main_form" class="main_content" enctype="multipart/form-data">
+            <form action="/member/join" method="post" name="main_form" id="main_form" class="main_content" enctype="multipart/form-data">
                 <label for="memberId" >아이디</label>
-                    <input type="text" onblur="aaa()" id="memberId" name="memberId">
+                    <input type="text" onblur="duCheckId()" id="memberId" name="memberId">
                 <p id="checkIdResult"></p>
                 <label for="memberPassword">비밀번호</label>
                     <input type="text" onblur="password()" id="memberPassword" name="memberPassword">
@@ -54,7 +39,7 @@
                     <option value="female">여</option>
                 </select>
                 <label for="memberEmail">이메일</label>
-                    <input type="text" onblur="bbb()" id="memberEmail" name="memberEmail" >
+                    <input type="text" onblur="duCheckEmail()" id="memberEmail" name="memberEmail" >
                 <p id="checkEmail"></p>
                 <label for="memberMobile">휴대전화</label>
                     <input type="text" id="memberMobile" name="memberMobile"  >

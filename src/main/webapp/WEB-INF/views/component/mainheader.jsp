@@ -27,13 +27,13 @@
         <li class="main_header_li"><a href="/"><i class="bi bi-house"></i></a></li>
         <li class="main_header_li"><a href="#">shop</a></li>
         <li class="main_header_li"><a href="#">review</a></li>
-        <li class="main_header_li"><a href="/board/index">community</a></li>
+        <li class="main_header_li"><a href="/board/paging?memberId=${loginDTO}">community</a></li>
         <li class="main_header_li"><a href="#">about</a></li>
       </ul>
       <ul id="main_header_right" class="main_header_ul">
-        <li><a href="/logout">logout</a></li>
+        <li><a href="/member/logout">logout</a></li>
         <li><a href="#">cart</a></li>
-        <li><a href="/detail?memberId=${loginDTO}">mypage</a></li>
+        <li><a href="/member/mypage?memberId=${loginDTO}">mypage</a></li>
         <li><a href="#">profile</a></li>
       </ul>
     </c:otherwise>

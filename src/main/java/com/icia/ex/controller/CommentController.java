@@ -23,7 +23,7 @@ public class CommentController {
         System.out.println(commentDTO);
         commentService.save(commentDTO);
         List<CommentDTO> commentDTOList = commentService.findAll(commentDTO.getBoardId());
-//        model.addAttribute("commentList", commentDTOList);
+        model.addAttribute("commentList", commentDTOList);
         return new ResponseEntity<>(commentDTOList,HttpStatus.OK);
     }
 }

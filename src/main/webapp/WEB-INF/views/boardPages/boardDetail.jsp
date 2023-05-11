@@ -27,19 +27,16 @@
             <th>id</th>
             <td>${board.id}</td>
         </tr>
-
         <tr>
             <th>writer</th>
             <td>${board.boardWriter}</td>
         </tr>
-
         <tr>
             <th>date</th>
             <td>
                 <fmt:formatDate value="${board.boardCreatedDate}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
             </td>
         </tr>
-
         <tr>
             <th>hits</th>
             <td>${board.boardHits}</td>
@@ -64,7 +61,6 @@
             </tr>
         </c:if>
     </table>
-
     <div id="commentArea">
         <c:choose>
             <c:when test="${commentList == null}">
@@ -90,26 +86,34 @@
                         </tr>
                     </c:forEach>
                 </table>
+                <div id="resultArea"></div>
             </c:otherwise>
         </c:choose>
     </div>
-    <div>
-        <label for="writer">댓글작성자</label>
-        <input type="text" name="writer" id="writer">
-        <label for="commentContents">내용</label><br>
-        <textarea name="commentContents" id="commentContents" cols="50" rows="5"></textarea> <br>
-        <button onclick="commentWrite(${board.id})" type="submit">댓글작성</button>
-    </div>
+    <c:choose>
+        <c:when test="${loginId != null}">
+            <div>
+                <label for="writer">댓글작성자</label>
+                <input type="text" name="writer" id="writer" value="${loginId}">
+                <label for="commentContents">내용</label><br>
+                <textarea name="commentContents" id="commentContents" cols="50" rows="5"></textarea> <br>
+                <button onclick="commentWrite(${board.id})" type="submit">댓글작성</button>
+            </div>
+        </c:when>
+    </c:choose>
     <button onclick="board_list()">목록</button>
-    <button onclick="board_update()">수정</button>
-    <button onclick="board_delete()">삭제</button>
-
+    <c:choose>
+        <c:when test="${board.boardWriter==loginId}">
+            <button onclick="board_update()">수정</button>
+            <button onclick="board_delete()">삭제</button>
+        </c:when>
+    </c:choose>
 </div>
 <%@include file="../component/footer.jsp" %>
 </body>
 <script>
-
     const commentWrite = (id) => {
+        const result = document.querySelector("#commentArea");
         const writer = document.querySelector("#writer").value;
         const contents = document.querySelector("#commentContents").value;
         const comment = {
@@ -122,7 +126,7 @@
             url: "/comment/save",
             data: JSON.stringify(comment),
             contentType: "application/json",
-            success: function () {
+            success: function (res) {
                 console.log("등록성공!")
                 let output = "<table>";
                 output += "<tr>";
@@ -160,7 +164,7 @@
     }
     const board_delete = () => {
         const id = '${board.id}';
-        location.href = "/board/delete-check?id=" + id;
+        location.href = "/board/delete?id=" + id;
     }
 </script>
 </html>

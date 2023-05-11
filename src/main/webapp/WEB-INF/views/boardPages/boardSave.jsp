@@ -9,6 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
+
 <head>
     <title>Title</title>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
@@ -21,7 +22,7 @@
 <%@include file="../component/mainheader.jsp" %>
 <form action="/board/save" name="boardSave" method="post" enctype="multipart/form-data">
     <label for="boardWriter">작성자</label>
-    <input type="text" id="boardWriter" name="boardWriter" value=""><br>
+    <input type="text" id="boardWriter" name="boardWriter" value="${id}" readonly><br>
     <label for="boardPass">글 비밀번호</label>
     <input type="text" id="boardPass" name="boardPass"><br>
     <label for="boardTitle">글 제목</label>
@@ -32,6 +33,7 @@
     <input onclick="boardSubmit()" type="button" value="작성하기">
 </form>
 </body>
+
 <script>
     const boardSubmit = () => {
         boardSave.submit();

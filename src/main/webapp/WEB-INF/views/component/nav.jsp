@@ -29,6 +29,6 @@
         loginArea.innerHTML = "<a href='/mypage' style='color: black;'>"+loginEmail +"님 환영해요!</a>"+
                                 "<a href='/logout'>logout</a>";
     } else {
-        loginArea.innerHTML = "<a href='/login'>login</a>";
+        loginArea.innerHTML = "<a href='/member/mypage'>${loginDTO}님 환영합니다</a>";
     }
 </script>
