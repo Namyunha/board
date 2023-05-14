@@ -14,9 +14,13 @@
         <li>
             <a href="/board/">글목록</a>
         </li>
-        <li class="login-name" id="login-area">
-
-        </li>
+        <c:choose>
+            <c:when test="${loginDTO == 'admin'}">
+                <li class="login-name" id="login-area">
+                    <a href="/admin">관리자페이지</a>
+                </li>
+            </c:when>
+        </c:choose>
     </ul>
 </div>
 
@@ -26,8 +30,8 @@
     console.log(loginEmail.length);
 
     if (loginEmail.length != 0) {
-        loginArea.innerHTML = "<a href='/mypage' style='color: black;'>"+loginEmail +"님 환영해요!</a>"+
-                                "<a href='/logout'>logout</a>";
+        loginArea.innerHTML = "<a href='/mypage' style='color: black;'>" + loginEmail + "님 환영해요!</a>" +
+            "<a href='/logout'>logout</a>";
     } else {
         loginArea.innerHTML = "<a href='/member/mypage'>${loginDTO}님 환영합니다</a>";
     }

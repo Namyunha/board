@@ -14,6 +14,7 @@ create table comment_table(
 	commentCreateDate datetime default now(),
 	constraint fk_comment foreign key (boardId) references board_table (id) on delete cascade
 );
+
 create table member_table(
 	id bigint auto_increment primary key,
     memberId varchar(20) not null unique,
@@ -25,6 +26,7 @@ create table member_table(
     memberMobile varchar(20) not null unique,
     fileAttached int default 0
 );
+
 create table board_table (
 	id bigint auto_increment primary key,
     boardWriter varchar(50) ,
@@ -35,8 +37,10 @@ create table board_table (
     boardHits bigint default 0,
     fileAttached int default 0,
     memberId bigint,
-    constraint fk_board_table foreign key(memberId) references member_table(id) on delete cascade
+    constraint fk_board_
+    table foreign key(memberId) references member_table(id) on delete cascade
 );
+
 create table member_file_table(
 	id bigint auto_increment primary key,
     originalFileName varchar(100),

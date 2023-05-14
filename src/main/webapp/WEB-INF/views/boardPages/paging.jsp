@@ -11,14 +11,7 @@
 <script src="/resources/js/paging.js"></script>
 <div id="section">
     <div class="container" id="search-area">
-        <form action="/board/paging" method="get">
-            <select name="type">
-                <option value="boardTitle">제목</option>
-                <option value="boardWriter">작성자</option>
-            </select>
-            <input type="text" name="q" placeholder="검색어를 입력하세요">
-            <input type="submit" value="검색">
-        </form>
+
         <button onclick="writeBoard(`${memberId}`)">글작성하기</button>
     </div>
     <div class="container" id="list">
@@ -47,6 +40,14 @@
     </div>
 
     <div class="container">
+        <form action="/board/paging" method="get">
+            <select name="type">
+                <option value="boardTitle">제목</option>
+                <option value="boardWriter">작성자</option>
+            </select>
+            <input type="text" name="q" placeholder="검색어를 입력하세요">
+            <input type="submit" value="검색">
+        </form>
         <ul class="pagination justify-content-center">
             <c:choose>
                 <%-- 현재 페이지가 1페이지면 이전 글자만 보여줌 --%>

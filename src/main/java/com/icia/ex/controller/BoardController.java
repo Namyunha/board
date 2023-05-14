@@ -74,6 +74,7 @@ public class BoardController {
         }
         return "boardPages/boardDetail";
     }
+
     @GetMapping("/")
     public String boardList(Model model) {
         List<BoardDTO> boardDTOList = boardService.findAll();
@@ -81,6 +82,7 @@ public class BoardController {
         System.out.println(boardDTOList);
         return "boardPages/boardList";
     }
+
     @GetMapping("/ajax-detail")
     public ResponseEntity detailAjax(@RequestParam("id") Long id) {
         System.out.println("id = " + id);
