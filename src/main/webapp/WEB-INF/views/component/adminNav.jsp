@@ -9,22 +9,16 @@
             </a>
         </li>
         <li>
-            <a href="#">회원등록</a>
+            <a onclick="findAll()">회원관리</a>
         </li>
         <li>
-            <a onclick="findAll()">회원목록 조회/수정</a>
+            <a href="#">상품관리</a>
         </li>
         <li>
-            <a href="#">회원 매출 조회</a>
+            <a href="#">주문관리</a>
         </li>
         <li>
-            <a href="#">상품등록</a>
-        </li>
-        <li>
-            <a href="#">상품 목록</a>
-        </li>
-        <li>
-            <a href="#">홈으로</a>
+            <a href="/member/logout">Logout</a>
         </li>
     </ul>
 </div>

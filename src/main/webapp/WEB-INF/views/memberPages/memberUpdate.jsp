@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/resources/css/detail.css">
     <title>Title</title>
     <script src="/resources/js/update.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 <body>
 <%@include file="../component/mainheader.jsp" %>

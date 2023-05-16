@@ -40,6 +40,7 @@ public class BoardController {
        return "boardPages/boardSave";
     }
 
+
     @PostMapping("/save")
     public String saveParam(@ModelAttribute BoardDTO boardDTO, HttpSession session) throws IOException {
         String id = (String)session.getAttribute("loginDTO");
@@ -50,6 +51,7 @@ public class BoardController {
         boardService.save(boardDTO);
         return "redirect:/board/paging?memberId="+boardDTO.getId();
     }
+
 
     @GetMapping
     public String boardDetail(@RequestParam("id") Long id, @RequestParam(value = "page", required = false, defaultValue = "1") int page, Model model, HttpSession session) {
@@ -75,6 +77,7 @@ public class BoardController {
         return "boardPages/boardDetail";
     }
 
+
     @GetMapping("/")
     public String boardList(Model model) {
         List<BoardDTO> boardDTOList = boardService.findAll();
@@ -82,6 +85,7 @@ public class BoardController {
         System.out.println(boardDTOList);
         return "boardPages/boardList";
     }
+
 
     @GetMapping("/ajax-detail")
     public ResponseEntity detailAjax(@RequestParam("id") Long id) {
@@ -95,6 +99,7 @@ public class BoardController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
     @GetMapping("/update")
     public String boardUpdate(@RequestParam("id") Long id, Model model) {
         System.out.println("id = " + id);

@@ -29,6 +29,7 @@ public class MemberController {
         memberService.save(memberDTO);
         return "index";
     }
+
     @PostMapping("/checkId")
     public ResponseEntity searchId(@RequestParam("checkId") String checkId) {
         System.out.println("memberId: " + checkId);
@@ -55,6 +56,7 @@ public class MemberController {
         model.addAttribute("memberList", memberDTOList);
         return "memberPages/members";
     }
+
     @GetMapping("/detail")
     public String viewUser(@RequestParam("id") Long id, Model model) {
         System.out.println("id: " + id);
